@@ -1,0 +1,13 @@
+name: Set up node
+description: Sets up a specific node.js version using nvm
+author: dcodeIO
+inputs:
+  node-version:
+    description: The node.js version to use according to nvm
+    default: node
+  node-mirror:
+    description: The node.js mirror to use
+    default: https://nodejs.org/dist/
+runs:
+  using: node12
+  main: index.js

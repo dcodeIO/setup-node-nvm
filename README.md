@@ -6,11 +6,11 @@ This action sets up a specific node.js version on GitHub Actions using nvm, very
 
 ### node-version
 
-The node.js version to install and use, according to nvm.
+The node.js version to install and use, according to nvm. Uses the version specified in `.nvmrc` if omitted.
 
 ### node-mirror
 
-The node.js mirror to use, e.g. `https://nodejs.org/download/v8-canary/` for canary.
+The node.js mirror to use, e.g. `https://nodejs.org/download/v8-canary/` for node on V8 lkgr.
 
 ## Example usage:
 

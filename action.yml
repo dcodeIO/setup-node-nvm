@@ -4,7 +4,7 @@ author: dcodeIO
 inputs:
   node-version:
     description: The node.js version to use according to nvm
-    default: node
+    default: ""
   node-mirror:
     description: The node.js mirror to use
     default: https://nodejs.org/dist/

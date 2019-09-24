@@ -1,0 +1,17 @@
+name: "Use latest v8-canary"
+on: [push,pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: dcodeIO/setup-node-nvm@master
+      with:
+        node-version: node
+        node-mirror: https://nodejs.org/download/v8-canary/
+    - name: Check
+      run: |
+        which node
+        node -v
+        which npm
+        npm -v

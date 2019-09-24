@@ -7,6 +7,6 @@ chmod +x "$NVM_DIR/nvm.sh"
 . "$NVM_DIR/nvm.sh" --no-use
 nvm install $1
 nvm use $1
-npm -g install npm
+npm -g install npm@latest
 echo "SETUP_NODE_NVM_NODE: $(which node)"
 echo "SETUP_NODE_NVM_NPM: $(which npm)"

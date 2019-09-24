@@ -1,4 +1,4 @@
-name: CI
+name: "Use latest stable"
 on: [push,pull_request]
 jobs:
   build:

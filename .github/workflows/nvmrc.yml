@@ -1,0 +1,17 @@
+name: "Use .nvmrc by default"
+on: [push,pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: dcodeIO/setup-node-nvm@master
+    - name: Check
+      run: |
+        which node
+        node -v
+        which npm
+        npm -v
+        if [ $(node -v) != "v12.9.0" ]; then
+          exit 1;
+        fi

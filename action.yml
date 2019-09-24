@@ -1,9 +1,9 @@
-name: Set up node
+name: Set up node using nvm
 description: Sets up a specific node.js version using nvm
 author: dcodeIO
 inputs:
   node-version:
-    description: The node.js version to use according to nvm
+    description: The node.js version to use according to nvm. Uses the version specified in .nvmrc if omitted.
     default: ""
   node-mirror:
     description: The node.js mirror to use

@@ -8,6 +8,9 @@ inputs:
   node-mirror:
     description: The node.js mirror to use
     default: https://nodejs.org/dist/
+  package-manager:
+    description: The package manager to use. Uses npm@latest if omitted.
+    default: npm
 runs:
   using: node12
   main: index.js

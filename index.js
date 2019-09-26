@@ -1,9 +1,11 @@
 const child_process = require("child_process");
+const fs = require("fs");
 const path = require("path");
 const core = require("@actions/core");
 const version = core.getInput("node-version");
 const mirror = core.getInput("node-mirror");
-const child = child_process.spawn("bash", [ "install.sh", version, mirror ], { cwd: __dirname });
+const cwd = fs.existsSync(path.join(process.cwd(), `.nvmrc`)) ? process.cwd() : __dirname;
+const child = child_process.spawn("bash", [ "install.sh", version, mirror ], { cwd: cwd });
 const stdout = [];
 child.stdout.on("data", out => {
   stdout.push(out);

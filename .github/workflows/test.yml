@@ -113,18 +113,18 @@ jobs:
       run: |
         node -v
         npm -v
-  windows-canary:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@master
-    - uses: ./
-      with:
-        node-version: all
-        node-mirror: https://nodejs.org/download/v8-canary/
-    - name: Check
-      run: |
-        node -v
-        npm -v
+  # windows-canary:
+  #   runs-on: windows-latest
+  #   steps:
+  #   - uses: actions/checkout@master
+  #   - uses: ./
+  #     with:
+  #       node-version: all
+  #       node-mirror: https://nodejs.org/download/v8-canary/
+  #   - name: Check
+  #     run: |
+  #       node -v
+  #       npm -v
   macos-lts:
     runs-on: macos-latest
     steps:

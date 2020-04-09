@@ -1,0 +1,73 @@
+name: Test Linux
+on: [push, pull_request]
+jobs:
+  lts:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: dcodeIO/setup-node-nvm@master
+      with:
+        node-version: lts/*
+    - name: Check
+      run: |
+        which node
+        node -v
+        which npm
+        npm -v
+  stable:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: dcodeIO/setup-node-nvm@master
+      with:
+        node-version: node
+    - name: Check
+      run: |
+        which node
+        node -v
+        which npm
+        npm -v
+  exact:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: dcodeIO/setup-node-nvm@master
+      with:
+        node-version: "10.0.0"
+    - name: Check
+      run: |
+        which node
+        node -v
+        which npm
+        npm -v
+        if [ $(node -v) != "v10.0.0" ]; then
+          exit 1;
+        fi
+  nvmrc:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: dcodeIO/setup-node-nvm@master
+    - name: Check
+      run: |
+        which node
+        node -v
+        which npm
+        npm -v
+        if [ $(node -v) != "v12.9.0" ]; then
+          exit 1;
+        fi
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: dcodeIO/setup-node-nvm@master
+      with:
+        node-version: node
+        node-mirror: https://nodejs.org/download/v8-canary/
+    - name: Check
+      run: |
+        which node
+        node -v
+        which npm
+        npm -v

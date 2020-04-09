@@ -1,8 +1,8 @@
-name: "Use latest stable"
-on: [push,pull_request]
+name: Test Windows
+on: [push, pull_request]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@master
     - uses: dcodeIO/setup-node-nvm@master
@@ -10,7 +10,5 @@ jobs:
         node-version: node
     - name: Check
       run: |
-        which node
         node -v
-        which npm
         npm -v

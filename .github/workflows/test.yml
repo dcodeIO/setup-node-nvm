@@ -1,4 +1,4 @@
-name: Test Linux
+name: Test
 on: [push, pull_request]
 jobs:
   lts:
@@ -70,4 +70,26 @@ jobs:
         which node
         node -v
         which npm
+        npm -v
+  windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: node
+    - name: Check
+      run: |
+        node -v
+        npm -v
+  macos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: node
+    - name: Check
+      run: |
+        node -v
         npm -v

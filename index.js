@@ -7,8 +7,6 @@ const mirror = core.getInput("node-mirror");
 
 if (process.platform == "win32") {
   runScript("powershell", ".\\install.ps1");
-} else if (process.platform == "darwin") {
-  runScript("bash", "install-preinstalled.sh");
 } else {
   runScript("bash", "install.sh");
 }

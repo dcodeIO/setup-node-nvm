@@ -18,9 +18,10 @@ async function resolveVersion(version, mirror) {
 }
 
 (async () => {
-  const mirror = core.getInput("node-mirror") || "https://nodejs.org/dist/";
-  const version = await resolveVersion(core.getInput("node-version"), mirror);
+  let mirror = core.getInput("node-mirror") || "https://nodejs.org/dist/";
+  let version = await resolveVersion(core.getInput("node-version"), mirror);
   if (process.platform == "win32") {
+    if (/^\d/.test(version)) version = "v" + version;
     runScript("powershell", ".\\install.ps1", version, mirror);
   } else {
     runScript("bash", "install.sh", version, mirror);

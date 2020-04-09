@@ -1,5 +1,5 @@
 $NVM_HOME="$((Get-Location).Path)\mynvm"
-[System.Environment]::SetEnvironmentVariable("NVM_HOME","$NVM_HOME",[System.EnvironmentVariableTarget]::User)
+$env:NVM_HOME=$NVM_HOME
 Invoke-WebRequest -Uri https://github.com/coreybutler/nvm-windows/releases/download/1.1.7/nvm-noinstall.zip -OutFile nvm.zip
 Expand-Archive nvm.zip -DestinationPath "$NVM_HOME"
 New-Item -Path "$NVM_HOME\settings.txt" -ItemType File 

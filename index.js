@@ -4,10 +4,11 @@ const core = require("@actions/core");
 const semver = require("semver");
 const nv = require("@pkgjs/nv");
 
-async function resolveVersion(version) {
+// Utilize @pkgjs/nv to resolve aliases before forwarding to nvm / nvm-windows
+async function resolveVersion(version, mirror) {
   let query = version;
   if (query) {
-    const versions = await nv(version === "node" ? "current" : version);
+    const versions = await nv(version, { mirror });
     if (versions.length) {
       versions.sort((a, b) => semver.rcompare(a.version, b.version));
       return versions[0].version;
@@ -17,8 +18,8 @@ async function resolveVersion(version) {
 }
 
 (async () => {
-  const version = await resolveVersion(core.getInput("node-version"));
-  const mirror = core.getInput("node-mirror") || "";
+  const mirror = core.getInput("node-mirror") || "https://nodejs.org/dist/";
+  const version = await resolveVersion(core.getInput("node-version"), mirror);
   if (process.platform == "win32") {
     runScript("powershell", ".\\install.ps1", version, mirror);
   } else {

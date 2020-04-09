@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.3",
-    "@pkgjs/nv": "0.0.3",
+    "@pkgjs/nv": "github:dcodeIO/nv",
     "semver": "^7.2.1"
   }
 }

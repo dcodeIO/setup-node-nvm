@@ -67,7 +67,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: ./
       with:
-        node-version: current
+        node-version: latest
         node-mirror: https://nodejs.org/download/v8-canary/
     - name: Check
       run: |
@@ -123,7 +123,7 @@ jobs:
   #   - uses: actions/checkout@master
   #   - uses: ./
   #     with:
-  #       node-version: current
+  #       node-version: latest
   #       node-mirror: https://nodejs.org/download/v8-canary/
   #   - name: Check
   #     run: |
@@ -177,7 +177,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: ./
       with:
-        node-version: current
+        node-version: latest
         node-mirror: https://nodejs.org/download/v8-canary/
     - name: Check
       run: |

@@ -10,6 +10,7 @@ async function resolveVersion(version, mirror) {
   if (query) {
     if (query == "node") query = "current";
     if (query == "lts/*") query = "lts_latest";
+    if (query == "latest") query = "all";
     const versions = await nv(version, { mirror });
     if (versions.length) {
       versions.sort((a, b) => semver.rcompare(a.version, b.version));

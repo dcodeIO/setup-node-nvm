@@ -6,12 +6,14 @@ const nv = require("@pkgjs/nv");
 
 // Utilize @pkgjs/nv to resolve before forwarding to nvm / nvm-windows
 async function resolveVersion(version, mirror) {
-  let query = version;
-  if (query) {
-    if (query == "node") query = "current";
-    if (query == "lts/*") query = "lts_latest";
-    if (query == "latest") query = "all";
-    const versions = await nv(version, { mirror });
+  if (version) {
+    let query = version;
+    switch (query) {
+      case "node": { query = "current"; break; }
+      case "lts/*": { query = "lts_latest"; break; }
+      case "latest": { query = "all"; break; }
+    }
+    const versions = await nv(query, { mirror });
     if (versions.length) {
       versions.sort((a, b) => semver.rcompare(a.version, b.version));
       return versions[0].version;

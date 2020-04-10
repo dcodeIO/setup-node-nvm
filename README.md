@@ -1,6 +1,6 @@
 # Set up node using nvm
 
-This action sets up a specific node.js version on GitHub Actions using nvm, very similar to the original [@actions/setup-node](https://github.com/actions/setup-node). Unlike setup-node (at the time of this writing) it does support several aliases and custom mirrors like the one for v8-canary.
+This action sets up a specific node.js version on GitHub Actions using [nvm](https://github.com/nvm-sh/nvm), very similar to [@actions/setup-node](https://github.com/actions/setup-node). Unlike setup-node (at the time of this writing) it does support several aliases and custom mirrors like the one for [node-v8](https://github.com/nodejs/node-v8). Note that this is merely intended as a placeholder until setup-node supports [aliases](https://github.com/actions/setup-node/issues/26), which is crucial for rolling testing, and [mirrors](https://github.com/actions/setup-node/issues/65), which is useful for WebAssembly testing. Has some Windows support via [nvm-windows](https://github.com/coreybutler/nvm-windows), but there are issues with versions newer than current and `.nvmrc`.
 
 ## Inputs
 

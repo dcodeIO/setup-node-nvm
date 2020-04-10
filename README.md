@@ -1,6 +1,6 @@
 # Set up node using nvm
 
-This action sets up a specific node.js version on GitHub Actions using nvm, very similar to the original [@actions/setup-node](https://github.com/actions/setup-node). Unlike setup-node (at the time of this writing) it does support `lts/*` (latest LTS), `node` (latest stable) and custom mirrors like the one for v8-canary, but does not work on Windows.
+This action sets up a specific node.js version on GitHub Actions using nvm, very similar to the original [@actions/setup-node](https://github.com/actions/setup-node). Unlike setup-node (at the time of this writing) it does support several aliases and custom mirrors like the one for v8-canary.
 
 ## Inputs
 

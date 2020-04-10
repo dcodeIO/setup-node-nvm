@@ -4,10 +4,12 @@ const core = require("@actions/core");
 const semver = require("semver");
 const nv = require("@pkgjs/nv");
 
-// Utilize @pkgjs/nv to resolve aliases before forwarding to nvm / nvm-windows
+// Utilize @pkgjs/nv to resolve before forwarding to nvm / nvm-windows
 async function resolveVersion(version, mirror) {
   let query = version;
   if (query) {
+    if (query == "node") query = "current";
+    if (query == "lts/*") query = "lts_latest";
     const versions = await nv(version, { mirror });
     if (versions.length) {
       versions.sort((a, b) => semver.rcompare(a.version, b.version));

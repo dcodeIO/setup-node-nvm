@@ -1,15 +1,13 @@
 'use strict'
-const got = require('got')
+const http = require('https')
 const semver = require('semver')
-const _cache = new Map()
 
 module.exports = async function (alias = 'lts_active', opts = {}) {
   const now = opts.now || new Date()
-  const cache = opts.cache || _cache
   const mirror = opts.mirror || 'https://nodejs.org/dist/'
 
   const a = Array.isArray(alias) ? alias : [alias]
-  const versions = await getLatestVersionsByCodename(now, cache, mirror)
+  const versions = await getLatestVersionsByCodename(now, mirror)
 
   // Reduce to an object
   const m = a.reduce((m, a) => {
@@ -45,21 +43,38 @@ function resolveAlias (versions, alias) {
   }
 }
 
-function getSchedule (cache) {
-  return got('https://raw.githubusercontent.com/nodejs/Release/master/schedule.json', {
-    cache
-  }).json()
+function getJSON (url) {
+  return new Promise((resolve, reject) => {
+    http.get(url, res => {
+      if (res.statusCode !== 200) {
+        res.destroy()
+        return reject(Error('Status ' + res.statusCode))
+      }
+      const buffer = []
+      res.on('error', reject)
+      res.on('data', data => buffer.push(data))
+      res.on('end', () => {
+        try {
+          resolve(JSON.parse(Buffer.concat(buffer).toString('utf8')))
+        } catch (e) {
+          reject(e)
+        }
+      })
+    })
+  })
 }
 
-function getVersions (cache, mirror) {
-  return got(mirror.replace(/\/$/, '') + '/index.json', {
-    cache
-  }).json()
+function getSchedule () {
+  return getJSON('https://raw.githubusercontent.com/nodejs/Release/master/schedule.json')
 }
 
-async function getLatestVersionsByCodename (now, cache, mirror) {
-  const schedule = await getSchedule(cache)
-  const versions = await getVersions(cache, mirror)
+function getVersions (mirror) {
+  return getJSON(mirror.replace(/\/$/, '') + '/index.json')
+}
+
+async function getLatestVersionsByCodename (now, mirror) {
+  const schedule = await getSchedule()
+  const versions = await getVersions(mirror)
 
   // Composite aliases point to the HEAD for each release line
   const maintained = {}

@@ -67,7 +67,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: ./
       with:
-        node-version: all
+        node-version: current
         node-mirror: https://nodejs.org/download/v8-canary/
     - name: Check
       run: |
@@ -108,22 +108,22 @@ jobs:
       run: |
         node -v
         npm -v
-  windows-nvmrc:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@master
-    - uses: ./
-    - name: Check
-      run: |
-        node -v
-        npm -v
+  # windows-nvmrc:
+  #   runs-on: windows-latest
+  #   steps:
+  #   - uses: actions/checkout@master
+  #   - uses: ./
+  #   - name: Check
+  #     run: |
+  #       node -v
+  #       npm -v
   # windows-canary:
   #   runs-on: windows-latest
   #   steps:
   #   - uses: actions/checkout@master
   #   - uses: ./
   #     with:
-  #       node-version: all
+  #       node-version: current
   #       node-mirror: https://nodejs.org/download/v8-canary/
   #   - name: Check
   #     run: |
@@ -177,7 +177,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: ./
       with:
-        node-version: all
+        node-version: current
         node-mirror: https://nodejs.org/download/v8-canary/
     - name: Check
       run: |

@@ -9,8 +9,8 @@
     "url": "git+https://github.com/dcodeIO/setup-node-nvm.git"
   },
   "dependencies": {
-    "@actions/core": "^1.2.3",
+    "@actions/core": "^1.2.6",
     "@pkgjs/nv": "github:dcodeIO/nv",
-    "semver": "^7.2.1"
+    "semver": "^7.3.2"
   }
 }

@@ -9,7 +9,7 @@ inputs:
     description: The node.js mirror to use.
     default: https://nodejs.org/dist/
   node-arch:
-    description: The architecture of node.js to use (Only supported by nvm-windows). Defaults to 64 bit if omitted.
+    description: The architecture of node.js to use (Only supported by nvm-windows). Defaults to system arch if omitted.
     default: ""
 branding:
   icon: download

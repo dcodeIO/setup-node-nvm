@@ -12,6 +12,10 @@ The node.js version to install and use, according to nvm. Uses the version speci
 
 The node.js mirror to use, e.g. `https://nodejs.org/download/v8-canary/` for node on V8 lkgr.
 
+### node-arch (Windows only)
+
+The architecture of node.js to use. Defaults to system arch if omitted. More info about nvm-windows arch modifier [here](https://github.com/coreybutler/nvm-windows#usage).
+
 ## Example usage:
 
 ```yaml

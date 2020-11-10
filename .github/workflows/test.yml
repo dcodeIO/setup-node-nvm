@@ -120,8 +120,8 @@ jobs:
     - name: Check
       run: |
         node -v
-        node -e 'console.log(process.arch)'
         npm -v
+        if ((node -e 'console.log(process.arch)') -ne 'ia32') { exit 1 }
 
   # windows-nvmrc:
   #   runs-on: windows-latest

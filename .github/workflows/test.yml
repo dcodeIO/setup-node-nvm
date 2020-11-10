@@ -108,6 +108,21 @@ jobs:
       run: |
         node -v
         npm -v
+  windows-with-arch:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: "10.0.0"
+        node-mirror: https://nodejs.org/download/release/
+        node-arch: "32"
+    - name: Check
+      run: |
+        node -v
+        node -e 'console.log(process.arch)'
+        npm -v
+
   # windows-nvmrc:
   #   runs-on: windows-latest
   #   steps:

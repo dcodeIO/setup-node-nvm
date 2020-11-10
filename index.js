@@ -26,14 +26,16 @@ async function resolveVersion(version, mirror) {
   let mirror = core.getInput("node-mirror") || "https://nodejs.org/dist/";
   let version = await resolveVersion(core.getInput("node-version"), mirror);
   if (process.platform == "win32") {
-    runScript("powershell", ".\\install.ps1", version, mirror);
+    let arch = core.getInput("node-arch") || null;
+    runScript("powershell", ".\\install.ps1", version, mirror, arch);
   } else {
     runScript("bash", "install.sh", version, mirror);
   }
 })();
 
-function runScript(shell, script, version, mirror) {
-  const child = child_process.spawn(shell, [ script, version, mirror ], { cwd: __dirname });
+// arch only applies to Windows platform, so it's a no-op on GNU/Linux and macOS
+function runScript(shell, script, version, mirror, arch) {
+  const child = child_process.spawn(shell, [ script, version, mirror, arch ], { cwd: __dirname });
   const stdout = [];
   child.stdout.on("data", out => {
     stdout.push(out);

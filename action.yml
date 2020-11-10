@@ -6,8 +6,11 @@ inputs:
     description: The node.js version to use according to nvm. Uses the version specified in .nvmrc if omitted.
     default: ""
   node-mirror:
-    description: The node.js mirror to use
+    description: The node.js mirror to use.
     default: https://nodejs.org/dist/
+  node-arch:
+    description: The architecture of node.js to use (Only supported by nvm-windows). Defaults to 64 bit if omitted.
+    default: ""
 branding:
   icon: download
   color: green

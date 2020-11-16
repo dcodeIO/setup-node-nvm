@@ -33,7 +33,7 @@ async function resolveVersion(version, mirror) {
 })();
 
 function runScript(shell, script, version, mirror) {
-  const child = child_process.spawn(shell, [ script, version, mirror ], { cwd: __dirname });
+  const child = child_process.spawn(shell, [ script, version, mirror ], { ...process.env, cwd: __dirname });
   const stdout = [];
   child.stdout.on("data", out => {
     stdout.push(out);

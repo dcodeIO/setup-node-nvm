@@ -15,6 +15,7 @@ The node.js mirror to use, e.g. `https://nodejs.org/download/v8-canary/` for nod
 ### node-arch (Windows only)
 
 The architecture of node.js to use. Defaults to system arch if omitted. More info about nvm-windows arch modifier [here](https://github.com/coreybutler/nvm-windows#usage).
+Note that the action will reject to run on both GNU/Linux and macOS if node-arch is provided.
 
 ## Example usage:
 

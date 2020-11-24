@@ -32,7 +32,9 @@ async function resolveVersion(version, mirror) {
     if (arch) throw Error("Invalid input parameter: node-arch");
     runScript("bash", "install.sh", version, mirror);
   }
-})();
+})().catch (error => {
+  core.setFailed(error.message);
+});
 
 // arch only applies to Windows platform, so it will throw on both GNU/Linux and macOS when provided
 function runScript(shell, script, version, mirror, arch) {

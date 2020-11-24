@@ -25,15 +25,20 @@ async function resolveVersion(version, mirror) {
 (async () => {
   let mirror = core.getInput("node-mirror") || "https://nodejs.org/dist/";
   let version = await resolveVersion(core.getInput("node-version"), mirror);
+  let arch = core.getInput("node-arch") || "";
   if (process.platform == "win32") {
-    runScript("powershell", ".\\install.ps1", version, mirror);
+    runScript("powershell", ".\\install.ps1", version, mirror, arch);
   } else {
+    if (arch) throw Error("Invalid input parameter: node-arch");
     runScript("bash", "install.sh", version, mirror);
   }
-})();
+})().catch (error => {
+  core.setFailed(error.message);
+});
 
-function runScript(shell, script, version, mirror) {
-  const child = child_process.spawn(shell, [ script, version, mirror ], { cwd: __dirname });
+// arch only applies to Windows platform, so it will throw on both GNU/Linux and macOS when provided
+function runScript(shell, script, version, mirror, arch) {
+  const child = child_process.spawn(shell, [ script, version, mirror, arch ], { cwd: __dirname });
   const stdout = [];
   child.stdout.on("data", out => {
     stdout.push(out);

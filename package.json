@@ -1,6 +1,6 @@
 {
   "name": "setup-node-nvm",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": true,
   "description": "setup-node-nvm action",
   "main": "index.js",
@@ -9,8 +9,8 @@
     "url": "git+https://github.com/dcodeIO/setup-node-nvm.git"
   },
   "dependencies": {
-    "@actions/core": "^1.2.6",
+    "@actions/core": "^1.10.0",
     "@pkgjs/nv": "github:dcodeIO/nv",
-    "semver": "^7.3.2"
+    "semver": "^7.3.8"
   }
 }

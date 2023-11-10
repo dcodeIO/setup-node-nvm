@@ -2,8 +2,14 @@ name: Test
 on:
   push:
     branches:
-    - master
+      - master
   pull_request:
+    branches:
+      - master
+
+env:
+  NVM_NODE_VERSION: v18.17.0
+
 jobs:
   linux-lts:
     runs-on: ubuntu-latest
@@ -58,7 +64,7 @@ jobs:
         node -v
         which npm
         npm -v
-        if [ $(node -v) != "v12.9.0" ]; then
+        if [ $(node -v) != "$NVM_NODE_VERSION" ]; then
           exit 1;
         fi
   linux-canary:
@@ -108,27 +114,18 @@ jobs:
       run: |
         node -v
         npm -v
-  # windows-nvmrc:
-  #   runs-on: windows-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #   - name: Check
-  #     run: |
-  #       node -v
-  #       npm -v
-  # windows-canary:
-  #   runs-on: windows-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #     with:
-  #       node-version: latest
-  #       node-mirror: https://nodejs.org/download/v8-canary/
-  #   - name: Check
-  #     run: |
-  #       node -v
-  #       npm -v
+  windows-nvmrc:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+    - name: Check
+      run: |
+        node -v
+        npm -v
+        if [ $(node -v) != "$NVM_NODE_VERSION" ]; then
+          exit 1;
+        fi
   macos-lts:
     runs-on: macos-latest
     steps:
@@ -171,6 +168,9 @@ jobs:
       run: |
         node -v
         npm -v
+        if [ $(node -v) != "$NVM_NODE_VERSION" ]; then
+          exit 1;
+        fi
   macos-canary:
     runs-on: macos-latest
     steps:

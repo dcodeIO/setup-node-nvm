@@ -3,21 +3,26 @@ const path = require("path");
 const core = require("@actions/core");
 const semver = require("semver");
 const nv = require("@pkgjs/nv");
+const { promises: fs } = require("fs");
 
 // Utilize @pkgjs/nv to resolve before forwarding to nvm / nvm-windows
 async function resolveVersion(version, mirror) {
-  if (version) {
-    let query = version;
-    switch (query) {
-      case "node": { query = "current"; break; }
-      case "lts/*": { query = "lts_latest"; break; }
-      case "latest": { query = "all"; break; }
+  let query = version;
+  switch (query) {
+    case "node": { query = "current"; break; }
+    case "lts/*": { query = "lts_latest"; break; }
+    case "latest": { query = "all"; break; }
+    default: {
+      query = await fs.readFile(".nvmrc", "utf8").catch(err => {
+        console.error("Failed to read .nvmrc file", err);
+        throw err;
+      });
     }
-    const versions = await nv(query, { mirror });
-    if (versions.length) {
-      versions.sort((a, b) => semver.rcompare(a.version, b.version));
-      return versions[0].version;
-    }
+  }
+  const versions = await nv(query, { mirror });
+  if (versions.length) {
+    versions.sort((a, b) => semver.rcompare(a.version, b.version));
+    return versions[0].version;
   }
   return version;
 }

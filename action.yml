@@ -1,6 +1,6 @@
 name: Set up node using nvm
 description: Sets up a specific node.js version using nvm
-author: dcodeIO
+author: irby
 inputs:
   node-version:
     description: The node.js version to use according to nvm. Uses the version specified in .nvmrc if omitted.
@@ -12,5 +12,5 @@ branding:
   icon: download
   color: green
 runs:
-  using: node16
+  using: node18
   main: index.js

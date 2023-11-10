@@ -15,13 +15,17 @@ The node.js mirror to use, e.g. `https://nodejs.org/download/v8-canary/` for nod
 ## Example usage:
 
 ```yaml
-uses: dcodeIO/setup-node-nvm@master
+uses: irby/setup-node-nvm@master
 with:
   node-version: lts/*
 ```
 
 ```yaml
-uses: dcodeIO/setup-node-nvm@master
+uses: irby/setup-node-nvm@master
+```
+
+```yaml
+uses: irby/setup-node-nvm@master
 with:
   node-version: node
   node-mirror: https://nodejs.org/download/v8-canary/

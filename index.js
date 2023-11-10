@@ -21,13 +21,15 @@ async function resolveVersion(version, mirror) {
     }
   }
   
-  query = fs.readFile(".nvmrc", "utf8")
-              .then(data => data)
-              .catch(err => {
-                console.error("Failed to read .nvmrc file", err);
-              });
+  try {
+    query = await fs.readFile(".nvmrc", "utf8");
+    return query;
+  }
+  catch (err) {
+    console.info("Failed to read .nvmrc file", err);
+  }
 
-  return query;
+  return version;
 }
 
 (async () => {

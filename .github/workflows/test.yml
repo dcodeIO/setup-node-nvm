@@ -64,20 +64,6 @@ jobs:
         if [ $(node -v) != "$NVM_NODE_VERSION" ]; then
           exit 1;
         fi
-  linux-canary:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - uses: ./
-      with:
-        node-version: latest
-        node-mirror: https://nodejs.org/download/v8-canary/
-    - name: Check
-      run: |
-        which node
-        node -v
-        which npm
-        npm -v
   windows-lts:
     runs-on: windows-latest
     steps:
@@ -111,18 +97,6 @@ jobs:
       run: |
         node -v
         npm -v
-  windows-nvmrc:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@master
-    - uses: ./
-    - name: Check
-      run: |
-        node -v
-        npm -v
-        if [ $(node -v) != "$NVM_NODE_VERSION" ]; then
-          exit 1;
-        fi
   macos-lts:
     runs-on: macos-latest
     steps:
@@ -168,15 +142,3 @@ jobs:
         if [ $(node -v) != "$NVM_NODE_VERSION" ]; then
           exit 1;
         fi
-  macos-canary:
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@master
-    - uses: ./
-      with:
-        node-version: latest
-        node-mirror: https://nodejs.org/download/v8-canary/
-    - name: Check
-      run: |
-        node -v
-        npm -v

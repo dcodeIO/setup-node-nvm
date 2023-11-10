@@ -30,7 +30,7 @@ async function resolveVersion(version, mirror) {
               })  
               .catch(_ => console.info("Failed to read .nvmrc. Defaulting to action-level .nvmrc"));
   
-  return query;
+  return query ?? version;
 }
 
 (async () => {

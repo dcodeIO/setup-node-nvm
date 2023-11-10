@@ -39,3 +39,4 @@ If this value cannot be read, it will use the `.nvmrc` version defined in this r
 ```yaml
 uses: irby/setup-node-nvm@master
 ```
+

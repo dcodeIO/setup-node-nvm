@@ -21,15 +21,16 @@ async function resolveVersion(version, mirror) {
     }
   }
   
-  try {
-    query = await fs.readFile(".nvmrc", "utf8");
-    return query;
-  }
-  catch (err) {
-    console.info("Failed to read .nvmrc file", err);
-  }
+  console.info("Attempting to read .nvmrc from repository-level .nvmrc...");
 
-  return version;
+  query = await fs.readFile(".nvmrc", "utf8")
+              .then(data => {
+                console.info(`Success. Value read from repository-level .nvmrc: ${data}`)
+                return data;
+              })  
+              .catch(_ => console.info("Failed to read .nvmrc. Defaulting to action-level .nvmrc"));
+  
+  return query;
 }
 
 (async () => {

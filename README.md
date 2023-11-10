@@ -14,19 +14,28 @@ The node.js mirror to use, e.g. `https://nodejs.org/download/v8-canary/` for nod
 
 ## Example usage:
 
+### Use latest LTS version of Node
+
 ```yaml
 uses: irby/setup-node-nvm@master
 with:
   node-version: lts/*
 ```
 
-```yaml
-uses: irby/setup-node-nvm@master
-```
+### Use current Node version at mirror location
 
 ```yaml
 uses: irby/setup-node-nvm@master
 with:
   node-version: node
   node-mirror: https://nodejs.org/download/v8-canary/
+```
+
+### Use version specified in .nvm
+Will try to read `.nvmrc` at root level of repository calling the action. 
+
+If this value cannot be read, it will use the `.nvmrc` version defined in this repository.
+
+```yaml
+uses: irby/setup-node-nvm@master
 ```

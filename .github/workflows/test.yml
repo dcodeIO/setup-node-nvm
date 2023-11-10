@@ -5,7 +5,7 @@ on:
       - master
 
 env:
-  NVM_NODE_VERSION: v18.17.0
+  NVM_NODE_VERSION: v20.9.0
 
 jobs:
   linux-lts:
@@ -21,35 +21,35 @@ jobs:
         node -v
         which npm
         npm -v
-  # linux-stable:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #     with:
-  #       node-version: node
-  #   - name: Check
-  #     run: |
-  #       which node
-  #       node -v
-  #       which npm
-  #       npm -v
-  # linux-exact:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #     with:
-  #       node-version: "10.0.0"
-  #   - name: Check
-  #     run: |
-  #       which node
-  #       node -v
-  #       which npm
-  #       npm -v
-  #       if [ $(node -v) != "v10.0.0" ]; then
-  #         exit 1;
-  #       fi
+  linux-stable:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: node
+    - name: Check
+      run: |
+        which node
+        node -v
+        which npm
+        npm -v
+  linux-exact:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: "10.0.0"
+    - name: Check
+      run: |
+        which node
+        node -v
+        which npm
+        npm -v
+        if [ $(node -v) != "v10.0.0" ]; then
+          exit 1;
+        fi
   linux-nvmrc:
     runs-on: ubuntu-latest
     steps:
@@ -64,119 +64,119 @@ jobs:
         if [ $(node -v) != "$NVM_NODE_VERSION" ]; then
           exit 1;
         fi
-  # linux-canary:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #     with:
-  #       node-version: latest
-  #       node-mirror: https://nodejs.org/download/v8-canary/
-  #   - name: Check
-  #     run: |
-  #       which node
-  #       node -v
-  #       which npm
-  #       npm -v
-  # windows-lts:
-  #   runs-on: windows-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #     with:
-  #       node-version: lts/*
-  #   - name: Check
-  #     run: |
-  #       node -v
-  #       npm -v
-  # windows-stable:
-  #   runs-on: windows-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #     with:
-  #       node-version: node
-  #   - name: Check
-  #     run: |
-  #       node -v
-  #       npm -v
-  # windows-exact:
-  #   runs-on: windows-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #     with:
-  #       node-version: "10.0.0"
-  #   - name: Check
-  #     run: |
-  #       node -v
-  #       npm -v
-  # windows-nvmrc:
-  #   runs-on: windows-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #   - name: Check
-  #     run: |
-  #       node -v
-  #       npm -v
-  #       if [ $(node -v) != "$NVM_NODE_VERSION" ]; then
-  #         exit 1;
-  #       fi
-  # macos-lts:
-  #   runs-on: macos-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #     with:
-  #       node-version: lts/*
-  #   - name: Check
-  #     run: |
-  #       node -v
-  #       npm -v
-  # macos-stable:
-  #   runs-on: macos-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #     with:
-  #       node-version: node
-  #   - name: Check
-  #     run: |
-  #       node -v
-  #       npm -v
-  # macos-exact:
-  #   runs-on: macos-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #     with:
-  #       node-version: "10.0.0"
-  #   - name: Check
-  #     run: |
-  #       node -v
-  #       npm -v
-  # macos-nvmrc:
-  #   runs-on: macos-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #   - name: Check
-  #     run: |
-  #       node -v
-  #       npm -v
-  #       if [ $(node -v) != "$NVM_NODE_VERSION" ]; then
-  #         exit 1;
-  #       fi
-  # macos-canary:
-  #   runs-on: macos-latest
-  #   steps:
-  #   - uses: actions/checkout@master
-  #   - uses: ./
-  #     with:
-  #       node-version: latest
-  #       node-mirror: https://nodejs.org/download/v8-canary/
-  #   - name: Check
-  #     run: |
-  #       node -v
-  #       npm -v
+  linux-canary:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: latest
+        node-mirror: https://nodejs.org/download/v8-canary/
+    - name: Check
+      run: |
+        which node
+        node -v
+        which npm
+        npm -v
+  windows-lts:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: lts/*
+    - name: Check
+      run: |
+        node -v
+        npm -v
+  windows-stable:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: node
+    - name: Check
+      run: |
+        node -v
+        npm -v
+  windows-exact:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: "10.0.0"
+    - name: Check
+      run: |
+        node -v
+        npm -v
+  windows-nvmrc:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+    - name: Check
+      run: |
+        node -v
+        npm -v
+        if [ $(node -v) != "$NVM_NODE_VERSION" ]; then
+          exit 1;
+        fi
+  macos-lts:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: lts/*
+    - name: Check
+      run: |
+        node -v
+        npm -v
+  macos-stable:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: node
+    - name: Check
+      run: |
+        node -v
+        npm -v
+  macos-exact:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: "10.0.0"
+    - name: Check
+      run: |
+        node -v
+        npm -v
+  macos-nvmrc:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+    - name: Check
+      run: |
+        node -v
+        npm -v
+        if [ $(node -v) != "$NVM_NODE_VERSION" ]; then
+          exit 1;
+        fi
+  macos-canary:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: ./
+      with:
+        node-version: latest
+        node-mirror: https://nodejs.org/download/v8-canary/
+    - name: Check
+      run: |
+        node -v
+        npm -v

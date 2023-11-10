@@ -3,7 +3,7 @@ const path = require("path");
 const core = require("@actions/core");
 const semver = require("semver");
 const nv = require("@pkgjs/nv");
-const { fs } = require("fs");
+const { promises: fs } = require("fs");
 
 // Utilize @pkgjs/nv to resolve before forwarding to nvm / nvm-windows
 async function resolveVersion(version, mirror) {

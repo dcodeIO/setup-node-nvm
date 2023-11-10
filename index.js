@@ -3,7 +3,7 @@ const path = require("path");
 const core = require("@actions/core");
 const semver = require("semver");
 const nv = require("@pkgjs/nv");
-const { promises: fs } = require("fs");
+const { fs } = require("fs");
 
 // Utilize @pkgjs/nv to resolve before forwarding to nvm / nvm-windows
 async function resolveVersion(version, mirror) {
@@ -21,9 +21,11 @@ async function resolveVersion(version, mirror) {
     }
   }
   
-  query = await fs.readFile(".nvmrc", "utf8").catch(err => {
-    console.error("Failed to read .nvmrc file", err);
-  });
+  query = fs.readFile(".nvmrc", "utf8")
+              .then(data => data)
+              .catch(err => {
+                console.error("Failed to read .nvmrc file", err);
+              });
 
   return query;
 }

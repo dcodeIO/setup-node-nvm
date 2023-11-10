@@ -15,7 +15,6 @@ async function resolveVersion(version, mirror) {
     default: {
       query = await fs.readFile(".nvmrc", "utf8").catch(err => {
         console.error("Failed to read .nvmrc file", err);
-        throw err;
       });
     }
   }
